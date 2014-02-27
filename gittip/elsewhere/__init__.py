@@ -14,7 +14,6 @@ import xml.etree.ElementTree as ET
 from aspen import log, Response
 from aspen.utils import to_age, utc
 from psycopg2 import IntegrityError
-from requests_oauthlib import OAuth1Session, OAuth2Session
 import xmltodict
 
 from gittip.elsewhere._extractors import not_available
@@ -320,56 +319,3 @@ class Platform(object):
 
         # Now delegate to get_account_from_db
         return self.get_account_from_db(i.user_name)
-
-
-class PlatformOAuth1(Platform):
-
-    request_token_path = '/oauth/request_token'
-    authorize_path = '/oauth/authorize'
-    access_token_path = '/oauth/access_token'
-
-    def get_auth_session(self, token=None, token_secret=None):
-        return OAuth1Session(self.api_key, self.api_secret, token, token_secret,
-                             callback_uri=self.callback_url)
-
-    def get_auth_url(self, **kw):
-        sess = self.get_auth_session()
-        r = sess.fetch_request_token(self.auth_url+self.request_token_path)
-        url = sess.authorization_url(self.auth_url+self.authorize_path)
-        return url, r['oauth_token'], r['oauth_token_secret']
-
-    def get_query_id(self, querystring):
-        return querystring['oauth_token']
-
-    def handle_auth_callback(self, url, token, token_secret):
-        sess = self.get_auth_session(token=token, token_secret=token_secret)
-        sess.parse_authorization_response(url)
-        sess.fetch_access_token(self.auth_url+self.access_token_path)
-        return sess
-
-
-class PlatformOAuth2(Platform):
-
-    oauth_default_scope = None
-    oauth_email_scope = None
-    oauth_payment_scope = None
-
-    def get_auth_session(self, state=None, token=None):
-        return OAuth2Session(self.api_key, state=state, token=token,
-                             redirect_uri=self.callback_url,
-                             scope=self.oauth_default_scope)
-
-    def get_auth_url(self, **kw):
-        sess = self.get_auth_session()
-        url, state = sess.authorization_url(self.auth_url+'/authorize')
-        return url, state, ''
-
-    def get_query_id(self, querystring):
-        return querystring['state']
-
-    def handle_auth_callback(self, url, state, unused_arg):
-        sess = self.get_auth_session(state=state)
-        sess.fetch_token(self.auth_url+'/access_token',
-                         client_secret=self.api_secret,
-                         authorization_response=url)
-        return sess

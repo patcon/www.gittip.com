@@ -1,6 +1,6 @@
 from __future__ import absolute_import, division, print_function, unicode_literals
 
-from gittip.elsewhere import PlatformOAuth1
+from gittip.elsewhere.strategies.oauth import PlatformOAuth1
 from gittip.elsewhere._extractors import not_available, xpath
 
 
