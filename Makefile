@@ -25,8 +25,14 @@ env:
 				--extra-search-dir=./vendor/ \
 				--distribute \
 				./env/
-	./$(env_bin)/pip install -r requirements.txt
-	./$(env_bin)/pip install -r requirements_tests.txt
+
+vendor: env
+	./$(env_bin)/pip install --build build/ --no-install -r requirements.txt
+	./$(env_bin)/pip install --build build/ --no-install -r requirements_tests.txt
+
+install: env
+	./$(env_bin)/pip install --build build/ --no-download -r requirements.txt
+	./$(env_bin)/pip install --build build/ --no-download -r requirements_tests.txt
 	./$(env_bin)/pip install -e ./
 
 clean:
@@ -36,15 +42,15 @@ clean:
 cloud-db: env
 	echo -n $(postgression_database) >> local.env
 
-schema: env
+schema: install
 	./$(env_bin)/honcho -e defaults.env,local.env run ./recreate-schema.sh
 
-data:
+data: schema
 	./$(env_bin)/honcho -e defaults.env,local.env run ./$(env_bin)/fake_data fake_data
 
 db: cloud-db schema data
 
-run: env
+run: install
 	./$(env_bin)/honcho -e defaults.env,local.env run ./$(env_bin)/aspen \
 		--www_root=www/ \
 		--project_root=. \
