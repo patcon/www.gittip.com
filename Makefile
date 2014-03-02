@@ -31,8 +31,8 @@ vendor: env
 	./$(env_bin)/pip install --build build/ --no-install -r requirements_tests.txt
 
 install: env
-	./$(env_bin)/pip install --build build/ --no-download -r requirements.txt
-	./$(env_bin)/pip install --build build/ --no-download -r requirements_tests.txt
+	./$(env_bin)/pip install --build build/ --no-download --no-index -r requirements.txt
+	./$(env_bin)/pip install --build build/ --no-download --no-index -r requirements_tests.txt
 	./$(env_bin)/pip install -e ./
 
 clean:
