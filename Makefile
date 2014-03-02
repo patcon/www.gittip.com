@@ -33,7 +33,7 @@ vendor: env
 install: env
 	./$(env_bin)/pip install --build build/ --no-download --no-index -r requirements.txt
 	./$(env_bin)/pip install --build build/ --no-download --no-index -r requirements_tests.txt
-	./$(env_bin)/pip install -e ./
+	./$(env_bin)/pip install --editable ./
 
 clean:
 	rm -rf env *.egg *.egg-info
@@ -42,7 +42,7 @@ clean:
 cloud-db: env
 	echo -n $(postgression_database) >> local.env
 
-schema: install
+schema: env
 	./$(env_bin)/honcho -e defaults.env,local.env run ./recreate-schema.sh
 
 data: schema
@@ -50,7 +50,7 @@ data: schema
 
 db: cloud-db schema data
 
-run: install
+run: env
 	./$(env_bin)/honcho -e defaults.env,local.env run ./$(env_bin)/aspen \
 		--www_root=www/ \
 		--project_root=. \
