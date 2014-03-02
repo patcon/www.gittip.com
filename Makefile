@@ -36,7 +36,7 @@ install: env
 	./$(env_bin)/pip install --editable ./
 
 clean:
-	rm -rf env *.egg *.egg-info
+	rm -rf env *.egg *.egg-info build/*/build
 	find . -name \*.pyc -delete
 
 cloud-db: env
@@ -45,7 +45,7 @@ cloud-db: env
 schema: env
 	./$(env_bin)/honcho -e defaults.env,local.env run ./recreate-schema.sh
 
-data: schema
+data:
 	./$(env_bin)/honcho -e defaults.env,local.env run ./$(env_bin)/fake_data fake_data
 
 db: cloud-db schema data
