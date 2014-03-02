@@ -30,6 +30,8 @@ stripe==1.9.1
 iso8601==0.1.4
 mock==0.8.0
 balanced==1.beta3
+wac==0.22
+uritemplate==0.6
 python-bitcoinaddress==0.2.2
 
 pytz==2012j
