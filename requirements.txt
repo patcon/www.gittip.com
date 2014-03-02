@@ -1,42 +1,42 @@
 
-./vendor/Cheroot-4.0.0beta.tar.gz
-./vendor/mimeparse-0.1.3.tar.gz
-./vendor/first-2.0.1.tar.gz
-./vendor/dependency_injection-1.1.0.tar.gz
-./vendor/algorithm-1.0.0.tar.gz
-./vendor/filesystem_tree-1.0.0.tar.gz
-./vendor/aspen-0.29.tar.bz2
+Cheroot==4.0.0beta
+mimeparse==0.1.3
+first==2.0.1
+dependency_injection==1.1.0
+algorithm==1.0.0
+filesystem_tree==1.0.0
+aspen==0.29
 
-./vendor/MarkupSafe-0.18.tar.gz
-./vendor/Jinja2-2.7.1.tar.gz
-./vendor/aspen-jinja2-0.3.tar.gz
+MarkupSafe==0.18
+Jinja2==2.7.1
+aspen-jinja2==0.3
 
-./vendor/psycopg2-2.5.1.tar.gz
-./vendor/postgres-2.1.2.tar.gz
+psycopg2==2.5.1
+postgres==2.1.2
 
-./vendor/simplejson-2.3.2.tar.gz
+simplejson==2.3.2
 
-./vendor/certifi-0.0.8.tar.gz
-./vendor/pyasn1-0.1.3.tar.gz
-./vendor/rsa-3.0.1.zip
-./vendor/chardet-1.0.1.tar.gz
-./vendor/oauthlib-0.4.2.tar.gz
-./vendor/requests-1.2.3.tar.gz
-./vendor/requests-oauthlib-0.4.0.tar.gz
-./vendor/xmltodict-0.8.4.tar.gz
+certifi==0.0.8
+pyasn1==0.1.3
+rsa==3.0.1
+chardet==1.0.1
+oauthlib==0.4.2
+requests==1.2.3
+requests-oauthlib==0.4.0
+xmltodict==0.8.4
 
-./vendor/stripe-1.9.1.tar.gz
+stripe==1.9.1
 
-./vendor/iso8601-0.1.4.tar.gz
-./vendor/mock-0.8.0.tar.gz
-./vendor/balanced-1.0.1beta2.tar.gz
-./vendor/python-bitcoinaddress-0.2.2.tar.gz
+iso8601==0.1.4
+mock==0.8.0
+balanced==1.beta3
+python-bitcoinaddress==0.2.2
 
-./vendor/pytz-2012j.tar.gz
-./vendor/raven-3.1.4.tar.gz
-./vendor/fake-factory-0.3.2.tar.gz
+pytz==2012j
+raven==3.1.4
+fake-factory==0.3.2
 
-./vendor/libsass-0.2.4.tar.gz
-./vendor/honcho-0.5.0.tar.gz
+libsass==0.2.4
+honcho==0.5.0
 
-./vendor/vcrpy-0.6.0.tar.gz
+vcrpy==0.6.0
