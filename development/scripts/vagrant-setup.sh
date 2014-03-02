@@ -34,7 +34,7 @@ fi
 
 
 # Set up the environment, the database, and run Gittip
-make env
+make install
 sudo -u postgres make schema data
 
 # Output helper text
